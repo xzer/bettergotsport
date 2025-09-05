@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         bettergotsport
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-03
+// @version      2025-09-04
 // @description  make gotsport easier
-// @author       You
+// @author       Xzer
 // @match        https://system.gotsport.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=gotsport.com
 // @grant        unsafeWindow
+// @updateURL    https://raw.githubusercontent.com/xzer/bettergotsport/refs/heads/main/bettergotsport.js
+// @downloadURL  https://raw.githubusercontent.com/xzer/bettergotsport/refs/heads/main/bettergotsport.js
 // ==/UserScript==
 
 (function() {
@@ -21,7 +23,7 @@
 
         const stack = [];
 
-        console.log("init StackedModal");
+        console.log("init bettergotsport");
 
         let clickBound = false;
         //const $=jQuery;
@@ -40,7 +42,7 @@
                 '#team-regs-table a[href^="/team_registrations/"]',
             ];
             const clickHandler = function() {
-                console.log("[stack]stack modal when showing roster ");
+                console.log("stack modal content when showing cascade modal ");
                 stack.push($("#global-modal").html());
             };
             clickBindingTarget.forEach(selector=>$('#global-modal').on('click', selector, clickHandler));
@@ -51,7 +53,7 @@
             console.log("bs modal hiding");
             if (stack.length > 0) {
                 event.preventDefault();
-                console.log("[stack]show stacked modal");
+                console.log("show stacked modal content");
                 const lastModalHTML = stack.pop();
                 $("#global-modal").html(lastModalHTML);
                 // window.initTooltip();
